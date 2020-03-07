@@ -10,21 +10,51 @@
 #import <Foundation/Foundation.h>
 #import "SLTesseract.h"
 
+//#include <unistd.h>
+//#include <stdio.h>
+//#include <limits.h>
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        NSString *pictureDirectory = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *filename = [pictureDirectory stringByAppendingFormat:@"/f90182848.jpg", index];
-        NSImage *image = [[NSImage alloc] initWithContentsOfFile:filename];
+        char cwd[PATH_MAX];
+        if (getcwd(cwd, sizeof(cwd)) != NULL) {
+            printf("Current working dir: %s\n", cwd);
+        }
         
+        NSString *pictureDirectory = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *filename = [pictureDirectory stringByAppendingFormat:@"/%s", argv[1]];
+//        NSString *filename = [pictureDirectory stringByAppendingFormat:@"%s/%s", cwd,argv[1]];
+        NSLog(@"filename:%@", filename);
+
+        NSImage *imageOriginal = [[NSImage alloc] initWithContentsOfFile:filename];
+//        NSLog(@"image:%@", imageOriginal);
+        if (! imageOriginal) {
+            exit(-1);
+        }
+        
+        NSSize size = imageOriginal.size;
+        CGFloat stampHeight = 42;
+        size.height = stampHeight;
+        
+        NSRect rect;
+        rect.size = size;
+        
+        NSRect originalRect = { NSZeroPoint, imageOriginal.size };
+        NSRect dest = { NSZeroPoint, size };
+
+        NSImage *imageCropped = [[NSImage alloc] initWithSize:size];
+        [imageCropped lockFocus];
+        [imageOriginal drawInRect:dest fromRect:dest operation:NSCompositingOperationCopy fraction:1];
+        [imageCropped unlockFocus];
+        NSLog(@"cropped:%@", imageCropped);
+
         //ocr.charWhitelist = @"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
         //ocr.charWhitelist = @"1234567890";
         //ocr.charBlacklist = @"1234567890";
         SLTesseract *ocr = [[SLTesseract alloc] init];
         ocr.language = @"eng";
-        NSString *text = [ocr recognize:image];
-        printf("Text detected: \n%s\n", [text UTF8String]);
-
-        NSLog(@"Hello, World!");
+        NSString *text = [ocr recognize:imageCropped];
+        p2rintf("Text detected: \n%s\n", [text UTF8String]);
     }
     return 0;
 }
