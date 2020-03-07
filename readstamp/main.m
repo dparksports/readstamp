@@ -18,13 +18,13 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         char cwd[PATH_MAX];
         if (getcwd(cwd, sizeof(cwd)) != NULL) {
-            printf("Current working dir: %s\n", cwd);
+//            printf("Current working dir: %s\n", cwd);
         }
         
         NSString *pictureDirectory = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *filename = [pictureDirectory stringByAppendingFormat:@"/%s", argv[1]];
 //        NSString *filename = [pictureDirectory stringByAppendingFormat:@"%s/%s", cwd,argv[1]];
-        NSLog(@"filename:%@", filename);
+//        NSLog(@"filename:%@", filename);
 
         NSImage *imageOriginal = [[NSImage alloc] initWithContentsOfFile:filename];
 //        NSLog(@"image:%@", imageOriginal);
@@ -46,15 +46,20 @@ int main(int argc, const char * argv[]) {
         [imageCropped lockFocus];
         [imageOriginal drawInRect:dest fromRect:dest operation:NSCompositingOperationCopy fraction:1];
         [imageCropped unlockFocus];
-        NSLog(@"cropped:%@", imageCropped);
+//        NSLog(@"cropped:%@", imageCropped);
 
         //ocr.charWhitelist = @"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
         //ocr.charWhitelist = @"1234567890";
         //ocr.charBlacklist = @"1234567890";
         SLTesseract *ocr = [[SLTesseract alloc] init];
         ocr.language = @"eng";
-        NSString *text = [ocr recognize:imageCropped];
-        p2rintf("Text detected: \n%s\n", [text UTF8String]);
+        NSString *text = [ocr recognize:imageOriginal];
+        NSRange rangeJPG = [text rangeOfString:@".jpg"];
+        NSRange snapJPG = [text rangeOfString:@"snap"];
+        NSRange trimRange = NSMakeRange(snapJPG.location, rangeJPG.location + rangeJPG.length - snapJPG.location);
+        NSString *timestamp = [text substringWithRange:trimRange];
+//        printf("Text detected: \n%s\n", [text UTF8String]);
+        printf("%s\n", [timestamp UTF8String]);
     }
     return 0;
 }
