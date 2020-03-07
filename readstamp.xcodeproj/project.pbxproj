@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		C0BCF3CB24142DEE0096F261 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BCF3CA24142DEE0096F261 /* main.m */; };
+		C0BCF3D624142FE90096F261 /* SLTesseract.mm in Sources */ = {isa = PBXBuildFile; fileRef = C0BCF3D424142FE90096F261 /* SLTesseract.mm */; };
+		C0BCF3DE241430A30096F261 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BCF3D8241430A30096F261 /* libjpeg.a */; };
+		C0BCF3DF241430A30096F261 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BCF3D9241430A30096F261 /* libz.a */; };
+		C0BCF3E0241430A30096F261 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BCF3DA241430A30096F261 /* libpng.a */; };
+		C0BCF3E1241430A30096F261 /* libtesseract.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BCF3DB241430A30096F261 /* libtesseract.a */; };
+		C0BCF3E2241430A30096F261 /* liblept.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BCF3DC241430A30096F261 /* liblept.a */; };
+		C0BCF3E3241430A30096F261 /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BCF3DD241430A30096F261 /* libtiff.a */; };
+		C0BCF3E5241431140096F261 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C0BCF3D324142E510096F261 /* tessdata */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +33,17 @@
 /* Begin PBXFileReference section */
 		C0BCF3C724142DEE0096F261 /* readstamp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = readstamp; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0BCF3CA24142DEE0096F261 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C0BCF3D124142E240096F261 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		C0BCF3D224142E260096F261 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+		C0BCF3D324142E510096F261 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		C0BCF3D424142FE90096F261 /* SLTesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SLTesseract.mm; sourceTree = "<group>"; };
+		C0BCF3D524142FE90096F261 /* SLTesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLTesseract.h; sourceTree = "<group>"; };
+		C0BCF3D8241430A30096F261 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = readstamp/lib/libjpeg.a; sourceTree = "<group>"; };
+		C0BCF3D9241430A30096F261 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = readstamp/lib/libz.a; sourceTree = "<group>"; };
+		C0BCF3DA241430A30096F261 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = readstamp/lib/libpng.a; sourceTree = "<group>"; };
+		C0BCF3DB241430A30096F261 /* libtesseract.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtesseract.a; path = readstamp/lib/libtesseract.a; sourceTree = "<group>"; };
+		C0BCF3DC241430A30096F261 /* liblept.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblept.a; path = readstamp/lib/liblept.a; sourceTree = "<group>"; };
+		C0BCF3DD241430A30096F261 /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = readstamp/lib/libtiff.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +51,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0BCF3DE241430A30096F261 /* libjpeg.a in Frameworks */,
+				C0BCF3DF241430A30096F261 /* libz.a in Frameworks */,
+				C0BCF3E0241430A30096F261 /* libpng.a in Frameworks */,
+				C0BCF3E1241430A30096F261 /* libtesseract.a in Frameworks */,
+				C0BCF3E2241430A30096F261 /* liblept.a in Frameworks */,
+				C0BCF3E3241430A30096F261 /* libtiff.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +68,7 @@
 			children = (
 				C0BCF3C924142DEE0096F261 /* readstamp */,
 				C0BCF3C824142DEE0096F261 /* Products */,
+				C0BCF3D7241430A30096F261 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +83,27 @@
 		C0BCF3C924142DEE0096F261 /* readstamp */ = {
 			isa = PBXGroup;
 			children = (
+				C0BCF3D524142FE90096F261 /* SLTesseract.h */,
+				C0BCF3D424142FE90096F261 /* SLTesseract.mm */,
+				C0BCF3D324142E510096F261 /* tessdata */,
+				C0BCF3D124142E240096F261 /* include */,
+				C0BCF3D224142E260096F261 /* lib */,
 				C0BCF3CA24142DEE0096F261 /* main.m */,
 			);
 			path = readstamp;
+			sourceTree = "<group>";
+		};
+		C0BCF3D7241430A30096F261 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0BCF3D8241430A30096F261 /* libjpeg.a */,
+				C0BCF3DC241430A30096F261 /* liblept.a */,
+				C0BCF3DA241430A30096F261 /* libpng.a */,
+				C0BCF3DB241430A30096F261 /* libtesseract.a */,
+				C0BCF3DD241430A30096F261 /* libtiff.a */,
+				C0BCF3D9241430A30096F261 /* libz.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,6 +116,7 @@
 				C0BCF3C324142DEE0096F261 /* Sources */,
 				C0BCF3C424142DEE0096F261 /* Frameworks */,
 				C0BCF3C524142DEE0096F261 /* CopyFiles */,
+				C0BCF3E42414310E0096F261 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -114,12 +159,24 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		C0BCF3E42414310E0096F261 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0BCF3E5241431140096F261 /* tessdata in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C0BCF3C324142DEE0096F261 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C0BCF3CB24142DEE0096F261 /* main.m in Sources */,
+				C0BCF3D624142FE90096F261 /* SLTesseract.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +296,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/readstamp/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +308,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/readstamp/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
