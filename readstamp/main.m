@@ -60,6 +60,14 @@ int main(int argc, const char * argv[]) {
         NSString *timestamp = [text substringWithRange:trimRange];
 //        printf("Text detected: \n%s\n", [text UTF8String]);
         printf("%s\n", [timestamp UTF8String]);
+        
+        NSError *error = nil;
+        NSFileManager *manager = [NSFileManager defaultManager];
+        NSString *timestampName = [pictureDirectory stringByAppendingFormat:@"/%@", timestamp];
+        [manager moveItemAtPath:filename toPath:timestampName error:&error];
+        if (error) {
+            NSLog(@"error: %@", error);
+        }
     }
     return 0;
 }
