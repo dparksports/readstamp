@@ -22,7 +22,7 @@ int main(int argc, const char * argv[]) {
         }
         
         NSString *pictureDirectory = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *filename = [pictureDirectory stringByAppendingFormat:@"/%s", argv[1]];
+        NSString *filename = [pictureDirectory stringByAppendingFormat:@"/%s/%s",argv[1],argv[2]];
 //        NSString *filename = [pictureDirectory stringByAppendingFormat:@"%s/%s", cwd,argv[1]];
 //        NSLog(@"filename:%@", filename);
 
@@ -58,7 +58,7 @@ int main(int argc, const char * argv[]) {
         NSRange rangeSnap = [text rangeOfString:@"snap"];
         if (rangeJPG.location == NSNotFound ||
             rangeSnap.location == NSNotFound ) {
-            exit(-1);
+            exit(-2);
         }
 
         NSRange trimRange = NSMakeRange(rangeSnap.location, rangeJPG.location + rangeJPG.length - rangeSnap.location);
@@ -68,7 +68,7 @@ int main(int argc, const char * argv[]) {
         
         NSError *error = nil;
         NSFileManager *manager = [NSFileManager defaultManager];
-        NSString *timestampName = [pictureDirectory stringByAppendingFormat:@"/%@", timestamp];
+        NSString *timestampName = [pictureDirectory stringByAppendingFormat:@"/%s/%@",argv[1],timestamp];
         [manager moveItemAtPath:filename toPath:timestampName error:&error];
         if (error) {
             NSLog(@"error: %@", error);
