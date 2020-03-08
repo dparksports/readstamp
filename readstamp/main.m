@@ -55,8 +55,13 @@ int main(int argc, const char * argv[]) {
         ocr.language = @"eng";
         NSString *text = [ocr recognize:imageOriginal];
         NSRange rangeJPG = [text rangeOfString:@".jpg"];
-        NSRange snapJPG = [text rangeOfString:@"snap"];
-        NSRange trimRange = NSMakeRange(snapJPG.location, rangeJPG.location + rangeJPG.length - snapJPG.location);
+        NSRange rangeSnap = [text rangeOfString:@"snap"];
+        if (rangeJPG.location == NSNotFound ||
+            rangeSnap.location == NSNotFound ) {
+            exit(-1);
+        }
+
+        NSRange trimRange = NSMakeRange(rangeSnap.location, rangeJPG.location + rangeJPG.length - rangeSnap.location);
         NSString *timestamp = [text substringWithRange:trimRange];
 //        printf("Text detected: \n%s\n", [text UTF8String]);
         printf("%s\n", [timestamp UTF8String]);
